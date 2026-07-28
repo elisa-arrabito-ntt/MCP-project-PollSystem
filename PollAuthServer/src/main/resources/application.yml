@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: poll-auth-server
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pollSystem
+    username: postgres
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 9001
+  servlet:
+    session:
+      cookie:
+        name: MCP_AUTHORIZATION_SERVER_SESSIONID
+
+# Auth Server Config
+authserver:
+  client:
+    default-client:
+      client-id: mcp-client
+      client-secret: "{noop}mcp-secret"
+      redirect-uri: "http://localhost:6274/oauth/callback"
+
+# Debug temporaneo per diagnosticare l'errore invalid_client con MCP Inspector/VSCode
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: TRACE
