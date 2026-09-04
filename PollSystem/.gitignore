@@ -1,0 +1,30 @@
+# Maven
+target/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Local config / secrets
+application-local.properties
+application-local.yml
+application-dev.properties
+application-dev.yml
+.env
+*.key
+*.crt
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini

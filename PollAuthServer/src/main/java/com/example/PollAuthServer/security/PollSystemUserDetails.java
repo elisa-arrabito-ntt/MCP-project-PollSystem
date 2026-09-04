@@ -28,7 +28,8 @@ public class PollSystemUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        // Legge il ruolo dal DB (es: "ADMIN") e crea l'autorità (es: "ROLE_ADMIN")
+        return List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
     }
 
     @Override

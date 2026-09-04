@@ -2,3 +2,13 @@
 *.iml
 out/
 target/
+
+# secrets/config locali
+application-local.properties
+application-local.yml
+*.env
+.env
+
+# log, build tool extra
+*.log
+.vscode/

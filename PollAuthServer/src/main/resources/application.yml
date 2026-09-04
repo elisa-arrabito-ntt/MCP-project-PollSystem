@@ -1,10 +1,15 @@
 spring:
   application:
     name: poll-auth-server
+  profiles:
+    active: local
+  # ⚠️ AGGIUNTA CRUCIALE: Definisce l'identità ufficiale dell'Auth Server
+  security:
+    oauth2:
+      authorizationserver:
+        issuer: http://localhost:9001
   datasource:
     url: jdbc:postgresql://localhost:5432/pollSystem
-    username: postgres
-    password: root
   jpa:
     hibernate:
       ddl-auto: update
@@ -26,9 +31,13 @@ authserver:
     default-client:
       client-id: mcp-client
       client-secret: "{noop}mcp-secret"
-      redirect-uri: "http://localhost:6274/oauth/callback"
+    # Client OAuth2 pubblico usato dalla pagina statica di conferma (confirm-delete.html,
+    # servita da PollSystem3) per la URL-mode elicitation di delete_poll. Ottiene un token
+    # con scope "rest" a vita breve, distinto dallo scope "mcp" usato dal client MCP.
+    confirm-delete-client:
+      client-id: confirm-delete-web-client
+      access-token-ttl-minutes: 2
 
-# Debug temporaneo per diagnosticare l'errore invalid_client con MCP Inspector/VSCode
 logging:
   level:
     org.springframework.security: DEBUG

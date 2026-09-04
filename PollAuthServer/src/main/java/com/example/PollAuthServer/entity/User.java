@@ -28,4 +28,7 @@ public class User {
 
     @Column(nullable = false, length = 100)
     private String email;
+
+    @Column(name = "role")
+    private String role = "USER"; // Default per i nuovi registrati
 }
